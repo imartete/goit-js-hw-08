@@ -16,15 +16,14 @@ function saveData() {
 
 window.onload = function () {
   const parsedStorage = JSON.parse(localStorage.getItem('feedback-form-state'));
-  if (parsedStorage !== null) {
-    formInput.value = parsedStorage.email;
-    formMessage.value = parsedStorage.message;
-  }
+  formInput.value = parsedStorage?.email ?? '';
+  formMessage.value = parsedStorage?.message ?? '';
+  saveData();
 };
 
 formNode.addEventListener('submit', event => {
   event.preventDefault();
   event.currentTarget.reset();
-  localStorage.clear();
+  localStorage.removeItem('feedback-form-state');
   console.log(formData);
 });
